@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <title>Listar Turmas</title>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+
+        <h1 class="card-header">Lista de Turmas</h1>
+
+        <div class="alert alert-success" th:if="${mensagem}">
+            <span th:text="${mensagem}"></span>
+        </div>
+        <div style="padding-bottom: 30px" class="text-center">
+            <span th:text="'Bem vindo: : ' + ${nomeUsuarioLogado}"></span>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th class="text-center">Lotação</th>
+                    <th class="text-center">Local</th>
+                    <th class="text-center">Qtd de Alunos</th>
+                    <th class="text-center">Editar</th>
+                    <th class="text-center">Excluir</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="unidades : ${unidades}">
+                    <td class="text-center" th:text="${unidades.nome}"></td>
+                    <td class="text-center" th:text="${unidades.local}" ></td>
+                    <td class="text-center" th:text="${unidades.listaFuncionario.size()}" ></td>
+                    <td class="text-center">
+                        <a th:href="@{/unidades/remover/{id}(id=${unidades.id})}">
+                            <i class="material-icons" title="Remover">delete</i>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a th:href="@{/unidades/editar/{id}(id=${unidades.id})}">
+                            <i class="material-icons" title="Editar">edit</i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <a th:href="@{/home}" class="btn btn-outline-secondary">Voltar</a>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

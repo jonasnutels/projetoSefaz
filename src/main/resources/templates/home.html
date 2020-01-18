@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="Style.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+
+    <title>Início</title>
+
+<body>
+
+<div class="container">
+    <br>
+        <div class="row justify-content-center" style="padding: 10px;">
+
+            <h3>Dashboard
+            </h3>
+        </div>
+
+        <div style="padding-bottom: 30px" class="text-right">
+            <span th:text="'Bem vindo: ' + ${nomeUsuarioLogado}"></span>
+        </div>
+
+
+        <div class = "row">
+
+
+            <div class="col-1">
+            <div style="padding: 10px; text-align: right" sec:authorize="hasRole('ROLE_PROFESSOR')">
+                <a th:href="@{/unidades/adicionar}" class="col-md-6">
+                    <button type="button" class="btn btn-outline-secondary" th:text="'Cadastrar Unidade'"></button>
+                </a>
+            </div>
+               </div>
+
+
+            <div class="col-1">
+                <div style="padding: 10px" sec:authorize="hasRole('ROLE_PROFESSOR')">
+                    <a th:href="@{/funcionarios/adicionar}" class="col-md-6">
+                        <button type="button" class="btn btn-outline-secondary" th:text="'Cadastrar Funcionário'"></button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-1">
+                <div style="padding: 10px; text-align: right">
+                    <a th:href="@{/turmas/listar}" class="col-md-6">
+                        <button type="button" class="btn btn-outline-secondary" th:text="'Listar Turma'"></button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-1">
+                <div style="padding: 10px" sec:authorize="hasRole('ROLE_PROFESSOR')">
+                    <a th:href="@{/alunos/listar}" class="col-md-6">
+                        <button type="button" class="btn btn-outline-secondary" th:text="'Listar Alunos'"></button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-1">
+                <div style=" padding: 10px; text-align: right">
+                    <a th:href="@{/logout}" class="col-md-6">
+                        <button type="button" class="btn btn-danger" th:text="'Logout'"></button>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
